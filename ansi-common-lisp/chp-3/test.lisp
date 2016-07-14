@@ -1,0 +1,7 @@
+(defun new-union (lst1 lst2)
+	(let ((tmplst '()))
+		(dolist (obj lst2)
+			(if (not (member obj lst1))
+				(setf tmplst (append tmplst (cons obj '())))
+				nil))
+		(append lst1 tmplst)))
