@@ -28,7 +28,21 @@
                         :r (bst-insert obj (node-r bst) <)
                         :l (node-l bst)))))))
 
+(defun bst-find (obj bst <)
+    (if (null bst)
+        nil
+        (let ((elt (node-elt bst)))
+            (if (eql obj elt)
+                bst
+                (if (funcall < obj elt)
+                    (bst-find obj (node-l bst) <)
+                    (bst-find obj (node-r bst) <))))))
 
-
-
+(defun bst-min (bst)
+    (and bst
+        (or (bst-min (node-l bst)) bst))) ; bst should be non-null
+; 'and' will return the first nil or the last expression's value
+(defun bst-max (bst)
+    (and bst
+        (or (bst-max (node-r bst) bst))))
 
